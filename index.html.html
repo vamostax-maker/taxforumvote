@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>제4기 세전포럼 베스트 자기소개 투표</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --ink:#16203a;
+    --ink-soft:#4a5677;
+    --paper:#f6f4ee;
+    --card:#ffffff;
+    --line:#e4e0d6;
+    --accent:#1f6feb;
+    --accent-soft:#e8f0fe;
+    --gold:#c8932a;
+    --silver:#8a93a6;
+    --bronze:#b08550;
+    --green:#0d9488;
+    --f0:#2563eb; --f1:#0d9488; --f2:#9333ea; --f3:#dc2626; --f4:#ea580c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{background:var(--paper);}
+  body{
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    color:var(--ink);line-height:1.55;
+    max-width:560px;margin:0 auto;padding-bottom:120px;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    padding:26px 20px 18px;border-bottom:1px solid var(--line);
+    background:var(--card);position:sticky;top:0;z-index:20;
+  }
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;}
+  h1{font-size:21px;font-weight:800;margin-top:6px;letter-spacing:-.02em;}
+  .sub{font-size:13px;color:var(--ink-soft);margin-top:7px;}
+  .tabs{display:flex;gap:6px;margin-top:16px;}
+  .tab{
+    flex:1;padding:9px 0;text-align:center;font-size:14px;font-weight:700;
+    border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink-soft);cursor:pointer;
+  }
+  .tab.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .ratebar-wrap{padding:14px 20px 0;}
+  .ratebar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  .ratebar-label{font-size:12px;color:var(--ink-soft);font-weight:600;}
+  .ratebar-num{font-size:12.5px;font-weight:800;color:var(--accent);}
+  .ratebar-bg{height:8px;background:var(--line);border-radius:5px;overflow:hidden;}
+  .ratebar-fg{height:100%;background:linear-gradient(90deg,var(--accent),#5b9bf5);border-radius:5px;transition:width .4s ease;}
+
+  .wrap{padding:16px 16px 0;}
+
+  .auth-card{
+    background:var(--card);border:1.5px solid var(--line);border-radius:16px;
+    padding:22px 20px;margin-top:6px;
+  }
+  .auth-title{font-size:16px;font-weight:800;margin-bottom:4px;}
+  .auth-desc{font-size:12.5px;color:var(--ink-soft);margin-bottom:18px;line-height:1.6;}
+  .auth-field{margin-bottom:14px;}
+  .auth-label{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:6px;display:block;}
+  .auth-select,.auth-input{
+    width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;
+    font-size:15px;font-family:inherit;background:#fff;color:var(--ink);
+  }
+  .auth-select:focus,.auth-input:focus{outline:none;border-color:var(--accent);}
+  .auth-btn{
+    width:100%;padding:14px;border:none;border-radius:11px;background:var(--ink);color:#fff;
+    font-size:15.5px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:6px;
+  }
+  .auth-btn:disabled{background:#c7c2b6;}
+  .auth-note{font-size:11.5px;color:var(--ink-soft);text-align:center;margin-top:14px;line-height:1.6;}
+  .auth-err{font-size:12.5px;color:#dc2626;font-weight:700;margin-top:8px;display:none;}
+
+  .who-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--accent-soft);border:1px solid #c9ddfb;border-radius:12px;
+    padding:11px 14px;margin:14px 16px 0;font-size:13px;
+  }
+  .who-name{font-weight:800;color:var(--ink);}
+  .who-switch{font-size:12px;color:var(--accent);font-weight:700;cursor:pointer;background:none;border:none;font-family:inherit;padding:4px 6px;}
+  .revote-tag{
+    margin:10px 16px 0;padding:9px 12px;background:#fff7e6;border:1px solid #f3d98a;border-radius:10px;
+    font-size:12.5px;color:#8a6300;line-height:1.5;
+  }
+
+  .field-group{margin-bottom:22px;}
+  .field-head{
+    display:flex;align-items:center;gap:8px;margin:10px 2px 12px;
+    font-size:13px;font-weight:800;color:var(--ink);
+  }
+  .field-dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;}
+  .field-count{font-size:11px;font-weight:600;color:var(--ink-soft);}
+  .card{
+    background:var(--card);border:1.5px solid var(--line);border-radius:14px;
+    padding:14px 15px;margin-bottom:10px;cursor:pointer;position:relative;
+    transition:border-color .12s,box-shadow .12s,transform .06s;
+  }
+  .card:active{transform:scale(.992);}
+  .card.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 2px 14px rgba(31,111,235,.12);}
+  .card .nm{font-size:15px;font-weight:800;letter-spacing:-.01em;}
+  .card .ms{font-size:13.5px;color:var(--ink-soft);margin-top:5px;word-break:keep-all;}
+  .check{
+    position:absolute;top:13px;right:13px;width:22px;height:22px;border-radius:50%;
+    border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:13px;color:#fff;font-weight:700;
+  }
+  .card.sel .check{background:var(--accent);border-color:var(--accent);}
+  .card.sel .check::after{content:"\2713";}
+
+  .footbar{
+    position:fixed;bottom:0;left:0;right:0;max-width:560px;margin:0 auto;
+    background:var(--card);border-top:1px solid var(--line);padding:12px 16px;
+    box-shadow:0 -4px 20px rgba(0,0,0,.06);z-index:30;
+  }
+  .counter{font-size:13px;color:var(--ink-soft);text-align:center;margin-bottom:9px;}
+  .counter b{color:var(--accent);font-weight:800;}
+  .btn{
+    width:100%;padding:15px;border:none;border-radius:12px;background:var(--ink);color:#fff;
+    font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:-.01em;
+  }
+  .btn:disabled{background:#c7c2b6;cursor:not-allowed;}
+  .toast{
+    position:fixed;bottom:96px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:#fff;padding:11px 18px;border-radius:24px;font-size:13.5px;font-weight:600;
+    opacity:0;pointer-events:none;transition:opacity .2s;z-index:40;white-space:nowrap;
+  }
+  .toast.show{opacity:1;}
+
+  .res-rate{margin:14px 16px 0;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:16px;}
+  .res-rate-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+  .res-rate-title{font-size:13px;font-weight:800;color:var(--ink);}
+  .res-rate-pct{font-size:20px;font-weight:900;color:var(--accent);}
+  .res-rate-sub{font-size:11.5px;color:var(--ink-soft);margin-top:6px;}
+  .podium{display:flex;flex-direction:column;gap:10px;padding:14px 16px 4px;}
+  .pcard{
+    border-radius:16px;padding:16px 16px;color:#fff;position:relative;overflow:hidden;
+  }
+  .pcard.p1{background:linear-gradient(135deg,#c8932a,#e6b450);}
+  .pcard.p2{background:linear-gradient(135deg,#6b7589,#9aa3b5);}
+  .pcard.p3{background:linear-gradient(135deg,#a06a3c,#c08a5e);}
+  .prank{font-size:12px;font-weight:800;letter-spacing:.1em;opacity:.95;}
+  .pname{font-size:20px;font-weight:800;margin-top:2px;}
+  .pfield{font-size:12px;opacity:.92;margin-top:1px;}
+  .pmsg{font-size:13px;opacity:.95;margin-top:8px;word-break:keep-all;}
+  .pvote{position:absolute;top:14px;right:16px;text-align:right;}
+  .pvote .n{font-size:26px;font-weight:800;line-height:1;}
+  .pvote .l{font-size:11px;opacity:.9;}
+  .rank-list{padding:10px 16px 0;}
+  .rank-head{font-size:12px;font-weight:800;color:var(--ink-soft);margin:18px 2px 8px;}
+  .rrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .rno{width:24px;text-align:center;font-weight:800;font-size:14px;color:var(--ink-soft);flex:0 0 auto;}
+  .rmid{flex:1;min-width:0;}
+  .rnm{font-size:14px;font-weight:700;}
+  .rms{font-size:11.5px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .rbarwrap{flex:0 0 92px;display:flex;align-items:center;gap:7px;}
+  .rbar{height:7px;background:var(--accent);border-radius:4px;min-width:2px;}
+  .rbarbg{flex:1;height:7px;background:var(--line);border-radius:4px;overflow:hidden;}
+  .rvt{font-size:12px;font-weight:800;width:22px;text-align:right;flex:0 0 auto;}
+  .empty{text-align:center;color:var(--ink-soft);padding:60px 20px;font-size:14px;}
+  .refresh{
+    display:block;margin:18px auto 30px;padding:10px 18px;border:1px solid var(--line);
+    background:var(--card);border-radius:10px;font-size:13px;font-weight:700;color:var(--ink-soft);cursor:pointer;font-family:inherit;
+  }
+  .hide{display:none!important;}
+  .privacy-note{font-size:11px;color:var(--ink-soft);text-align:center;padding:4px 24px 0;line-height:1.6;}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">제4기 세무사 전문분야포럼</div>
+  <h1>베스트 자기소개 투표</h1>
+  <div class="sub">로그인 후 가장 마음에 드는 자기소개 <b id="maxv">3</b>명을 선택해주세요</div>
+  <div class="tabs">
+    <div class="tab on" id="tabVote" onclick="show('vote')">투표하기</div>
+    <div class="tab" id="tabRes" onclick="show('res')">결과보기</div>
+  </div>
+</header>
+
+<div class="ratebar-wrap" id="rateBarMini">
+  <div class="ratebar-head">
+    <span class="ratebar-label">현재 참여율</span>
+    <span class="ratebar-num" id="miniRateNum">0 / 0명 (0%)</span>
+  </div>
+  <div class="ratebar-bg"><div class="ratebar-fg" id="miniRateFg" style="width:0%"></div></div>
+</div>
+
+<div id="voteView">
+
+  <div class="wrap" id="authView">
+    <div class="auth-card">
+      <div class="auth-title">🔐 투표자 로그인</div>
+      <div class="auth-desc">투표권이 있는 회원만 로그인할 수 있습니다.<br>성함과 비밀번호(4자리)를 입력해주세요. 입력하신 정보는 투표자 식별 용도로만 사용되며 결과에는 표시되지 않습니다.</div>
+      <div class="auth-field">
+        <label class="auth-label">성함</label>
+        <select class="auth-select" id="authName">
+          <option value="">성함을 선택해주세요</option>
+        </select>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">비밀번호 (4자리)</label>
+        <input class="auth-input" id="authPw" type="password" inputmode="numeric" maxlength="4" placeholder="••••">
+      </div>
+      <div class="auth-err" id="authErr"></div>
+      <button class="auth-btn" id="authBtn" onclick="doAuth()">로그인하고 투표하기</button>
+      <div class="auth-note">⚠️ 성함과 비밀번호가 일치해야 로그인할 수 있습니다. 본인 명의로만 투표해주세요.</div>
+    </div>
+  </div>
+
+  <div class="hide" id="voteAreaView">
+    <div class="who-bar">
+      <div><span class="who-name" id="whoName"></span><span style="color:var(--ink-soft);font-size:12.5px"> 님으로 로그인되었습니다</span></div>
+      <button class="who-switch" onclick="resetAuth()">로그아웃</button>
+    </div>
+    <div class="revote-tag hide" id="revoteTag">이미 투표하신 내역이 있습니다. 아래에서 선택을 변경한 뒤 다시 제출하면 수정됩니다.</div>
+    <div class="wrap" id="cardArea"></div>
+    <div class="privacy-note">※ 투표자 명단과 개별 투표 내용은 누구에게도 공개되지 않습니다.</div>
+  </div>
+
+</div>
+
+<div id="resView" class="hide">
+  <div class="res-rate">
+    <div class="res-rate-top">
+      <span class="res-rate-title">📊 실시간 참여 현황</span>
+      <span class="res-rate-pct" id="resRatePct">0%</span>
+    </div>
+    <div class="ratebar-bg"><div class="ratebar-fg" id="resRateFg" style="width:0%"></div></div>
+    <div class="res-rate-sub" id="resRateSub">0 / 0명 참여</div>
+  </div>
+  <div class="rank-head" style="padding:0 16px">🏆 실시간 TOP 3</div>
+  <div class="podium" id="podium"></div>
+  <div class="rank-head" id="restRankHead" style="display:none">전체 순위</div>
+  <div class="rank-list" id="rankList"></div>
+  <button class="refresh" onclick="renderResults()">결과 새로고침</button>
+</div>
+
+<div class="footbar hide" id="footbar">
+  <div class="counter">선택 <b id="selNow">0</b> / <span id="selMax">3</span>명</div>
+  <button class="btn" id="submitBtn" onclick="submitVote()" disabled>투표 제출하기</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const MAX_VOTES = 3;
+const CANDS = [{"id": "c0a", "field": "무역 및 국제조세", "name": "김동현", "msg": "고객에겐 따뜻한 세무사, 사고 치는 직원에겐 보살이 되는 사람.\" - 김동현 세무사입니다."}, {"id": "c0", "field": "무역 및 국제조세", "name": "김민석", "msg": "흑돌이 가면 백돌이 간다.' 광주 고시회의 묘수가 되고싶은 백돌 김민석 세무사 입니다."}, {"id": "c1", "field": "무역 및 국제조세", "name": "김시현", "msg": "\"노는게 제일 좋은 광주 뽀로로\""}, {"id": "c2", "field": "무역 및 국제조세", "name": "신현진", "msg": "포럼 좋아. 너무 좋아! 신현진세무사입니다.😀"}, {"id": "c3", "field": "무역 및 국제조세", "name": "이준", "msg": "한때 잡는 사람, 지금은 막는 사람 – 국조의 수문장"}, {"id": "c4", "field": "무역 및 국제조세", "name": "정우승", "msg": "24년간 고시회 신입회원을 열심히 배출하고 있는 39기 정우승"}, {"id": "c5", "field": "무역 및 국제조세", "name": "정홍일", "msg": "고시회의 합법적 외박 연구이사를 꿈꾸는 42기 정홍일 세무사입니다."}, {"id": "c6", "field": "무역 및 국제조세", "name": "채지원", "msg": "배우 채지원"}, {"id": "c7", "field": "무역 및 국제조세", "name": "최병주", "msg": "첫사랑의 도시 부산을 찾아온 최병주 세무사"}, {"id": "c8", "field": "무역 및 국제조세", "name": "최용열", "msg": "얼굴만 믿고 사는 최용열"}, {"id": "c9", "field": "무역 및 국제조세", "name": "황정원", "msg": "황금으로 거래처의 정원을 가득채워 줄 세무사 황.정.원. 입니다."}, {"id": "c10", "field": "부동산 개발 및 건설", "name": "권혜진", "msg": "고객은 가리지 않고,술은 가리는 카스여신 권혜진세무사입니다"}, {"id": "c11", "field": "부동산 개발 및 건설", "name": "김관형", "msg": "교육 참석은 핑계, 외박이 본심인 세무사. 김관형 세무사입니다."}, {"id": "c12", "field": "부동산 개발 및 건설", "name": "김동준", "msg": "위스키 마시며 자본금 관리하는 김동준 세무사"}, {"id": "c13", "field": "부동산 개발 및 건설", "name": "김성범", "msg": "고객 세금은 칼같이 챙기고 내 세금은 홈택스 알람으로 챙기는 세무사"}, {"id": "c14", "field": "부동산 개발 및 건설", "name": "손창용", "msg": "숫자에는 자신 있는 29년 차 세무사, 이제는 블로그 조회수, 마라톤 완주 거리와 한 달 독서량까지 세고 있는 손창용입니다"}, {"id": "c15", "field": "부동산 개발 및 건설", "name": "승현식", "msg": "국세 지방세 부담금 등 나라에 내는 돈은 다 보고. 가끔 나라보다 먼저 보는 55기 세무사 승현식 입니다"}, {"id": "c16", "field": "부동산 개발 및 건설", "name": "이재훈", "msg": "낮에는 세무사로 일하고 밤에는 육아하는 초보아빠 이재훈세무사"}, {"id": "c17", "field": "부동산 개발 및 건설", "name": "장보원", "msg": "AI 세무사 장보원입니다."}, {"id": "c18", "field": "부동산 개발 및 건설", "name": "최주연", "msg": "세전포럼 4기의 주연은 최주연"}, {"id": "c19", "field": "법인컨설팅", "name": "강경연", "msg": "절세는 꼼꼼하게, 술자리는 유쾌하게 하는 부산 세무사 강경연이니다."}, {"id": "c20", "field": "법인컨설팅", "name": "권만기", "msg": "“대전의 최다포럼 참가자! 하지만 법인컨설팅은 찐 새내기! 세무사 권만기입니다. \""}, {"id": "c21", "field": "법인컨설팅", "name": "김강수", "msg": "골프와 세법연구를 좋아하는 김강수 세무사입니다"}, {"id": "c22", "field": "법인컨설팅", "name": "김형석", "msg": "\"고객의 절세 계획은 제가 설계하지만, 저의 인생 계획은 마누라님께서 설계하는 39기 김형석 세무사입니다\""}, {"id": "c23", "field": "법인컨설팅", "name": "박민정", "msg": "INTJ 박택스(INTJ가 새로운 것을 배우는 이유는 남에게 보여주기 위해서가 아니라 자신의 지식을 확장하는 일 자체를 즐기기 때문입니다.)"}, {"id": "c24", "field": "법인컨설팅", "name": "박은지", "msg": "한다면 한다! 3일만에 폰게임 전국랭킹 100위 안에 든 박은지 세무사"}, {"id": "c25", "field": "법인컨설팅", "name": "박인준", "msg": "‘Wonderful Bravo Life'"}, {"id": "c26", "field": "법인컨설팅", "name": "윤수정", "msg": "ENFP 내일은 없다 투혼투지 롯데자이언츠팬 윤수정세무사"}, {"id": "c27", "field": "법인컨설팅", "name": "이종탁", "msg": "두려움을 신뢰로, 세무조사 조력자 36기 이종탁입니다."}, {"id": "c28", "field": "법인컨설팅", "name": "이주현", "msg": "못한다는 말이 젤 어려운 17년차 송파 세무사 이주현 입니다"}, {"id": "c29", "field": "법인컨설팅", "name": "이희석", "msg": "\"오감충족요리사 택스 아티스트\""}, {"id": "c30", "field": "법인컨설팅", "name": "황영순", "msg": "평생학습은 고시회 세전포럼과 함께\"라고 할까 합니다~^^"}, {"id": "c31", "field": "상속세 및 증여세", "name": "곽희원", "msg": "세금 계산은 쿨하게, 대학원 과제는 핫하게, 골프공은 상큼하게 날려 먹는 세무사, 곽희원 세무사입니다!"}, {"id": "c32", "field": "상속세 및 증여세", "name": "김인욱", "msg": "동탄 쌍둥이 아빠 입니다~!"}, {"id": "c33", "field": "상속세 및 증여세", "name": "박금주", "msg": "세무사 합격 22년, 개업 14년. 새로운 도약의 해를 만들어가는 세무사 박금주"}, {"id": "c34", "field": "상속세 및 증여세", "name": "송정영", "msg": "\"송정\"해수욕장에서 \"영(young)\"하게 놀고 싶은 송정영 세무사입니다."}, {"id": "c35", "field": "상속세 및 증여세", "name": "양민권", "msg": "\"고객에게는 지식을 쉽게, 동료들에게는 깊이 있는 인사이트를 전하고 싶은 양민권 세무사입니다\""}, {"id": "c36", "field": "상속세 및 증여세", "name": "이석정", "msg": "더이상의 말은 그만! 상증계의 바람과 비(풍우) 바라기! 딸랑~딸랑~ 이석정 세무사입니다."}, {"id": "c37", "field": "상속세 및 증여세", "name": "이영은", "msg": "멘탈 바사삭~ 감성 중년 아줌마 40기 이영은 입니다."}, {"id": "c38", "field": "상속세 및 증여세", "name": "이정민", "msg": "띠동갑 어린 남자에게 대시받고 해명자료를 준비중인 세무사"}, {"id": "c39", "field": "상속세 및 증여세", "name": "이현진", "msg": "대전 1등을 목표로 일만 하는 세무사입니다."}, {"id": "c40", "field": "양도소득세", "name": "김소연", "msg": "개정 세법은 놓쳐도 고시회 포럼 참석은 놓치지 않는 김소연 세무사입니다."}, {"id": "c41", "field": "양도소득세", "name": "김정현", "msg": "오늘도 도망가고 싶은 25년차 김정현세무사입니다...."}, {"id": "c42", "field": "양도소득세", "name": "양경섭", "msg": "양도세분야의 든든한, 아직도 배고픈_양경섭 세무사"}, {"id": "c43", "field": "양도소득세", "name": "엄해림", "msg": "엄~ 세전포럼 참가위해 미쿡에서 돌아온 엄~해림 세무사"}, {"id": "c44", "field": "양도소득세", "name": "정혜란", "msg": "세딸키우며 20년간 세금보다 인생을 더 많이 공부한 세무사 정혜란입니다."}, {"id": "c45", "field": "양도소득세", "name": "하인재", "msg": "부산!2박3일!행복! 이름처럼 엘리트가 되고 싶은 하인재 세무사입니다."}, {"id": "c46", "field": "양도소득세", "name": "허창식", "msg": "허벌나게 잼나고 돈 되는 남자, 35기 허창식 세무사입니다!!"}];
+
+// 로그인 가능 명단 (성함:비밀번호) — 투표권을 가진 전체 인원
+const ROSTER = {"양은진": "6236", "김겸순": "9386", "이동기": "8500", "김동현": "5439", "김민석": "1268", "김시현": "5654", "신현진": "2016", "이준": "9371", "정우승": "9227", "정홍일": "6307", "채지원": "9488", "최병주": "1155", "최용열": "9654", "황정원": "5055", "강현삼": "9617", "백승수": "5107", "이원규": "7963", "이강오": "5326", "강동우": "3788", "권혜진": "4664", "김관형": "0067", "김동준": "2317", "김성범": "2966", "손창용": "1718", "승현식": "5659", "이재훈": "3522", "장보원": "9999", "최주연": "0815", "하훈정": "3040", "한승훈": "7508", "최왕규": "2437", "안호전": "2411", "김찬영": "7086", "김민식": "3796", "김미화": "7799", "강경연": "6735", "권만기": "5639", "김강수": "9775", "김형석": "0914", "박민정": "1933", "박은지": "6885", "박인준": "7495", "윤수정": "0709", "이종탁": "2508", "이주현": "3272", "이희석": "3086", "황영순": "1842", "강상원": "1456", "신세희": "0211", "박성일": "1625", "고현식": "6725", "박풍우": "6000", "곽희원": "3850", "김인욱": "8891", "모현혜": "8840", "박금주": "9478", "송정영": "3277", "양민권": "3588", "이석정": "6100", "이영은": "2927", "이은주": "3128", "이정민": "7963", "이현진": "8533", "황선웅": "2948", "강홍구": "6387", "강동균": "3030", "지병근": "4114", "김소연": "8984", "김정현": "4609", "김주연": "3522", "박용현": "1648", "양경섭": "1624", "엄해림": "0211", "정혜란": "4729", "최준규": "4444", "하인재": "6758", "허창식": "5005", "황철연": "3027", "이정근": "4927", "홍성원": "9999", "김대현": "8626", "김순화": "6119", "황지환": "2990", "김현배": "7992", "윤은경": "3486", "박수윤": "4458", "김희철": "3344", "박진수": "1111", "조성인": "1111", "배지인": "1111", "송대규": "1111", "곽영": "1111"};
+
+const ROSTER_NAMES = Object.keys(ROSTER).sort((a,b)=>a.localeCompare(b,'ko'));
+const TOTAL_PARTICIPANTS = ROSTER_NAMES.length;
+const BLOCK_SELF_VOTE = true;
+
+const FIELDS = [...new Set(CANDS.map(c=>c.field))];
+const FCOLOR = {};
+FIELDS.forEach((f,i)=>FCOLOR[f]='var(--f'+i+')');
+
+let authKey = null;
+let authName = null;
+let selected = new Set();
+
+document.getElementById('maxv').textContent = MAX_VOTES;
+document.getElementById('selMax').textContent = MAX_VOTES;
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),1700);
+}
+
+function hashKey(str){
+  let h=5381;
+  for(let i=0;i<str.length;i++){ h=((h<<5)+h)+str.charCodeAt(i); h|=0; }
+  return Math.abs(h).toString(36);
+}
+
+function populateNameSelect(){
+  const sel=document.getElementById('authName');
+  ROSTER_NAMES.forEach(n=>{
+    const op=document.createElement('option');
+    op.value=n; op.textContent=n;
+    sel.appendChild(op);
+  });
+}
+
+async function getVotedCount(){
+  try{
+    const r=await window.storage.list('vote:', true);
+    const keys=(r&&r.keys)?r.keys:[];
+    return keys.length;
+  }catch(e){ return 0; }
+}
+
+async function refreshRateDisplay(){
+  const voted=await getVotedCount();
+  const pct=TOTAL_PARTICIPANTS>0?Math.round(voted/TOTAL_PARTICIPANTS*100):0;
+
+  const miniNum=document.getElementById('miniRateNum');
+  const miniFg=document.getElementById('miniRateFg');
+  if(miniNum){ miniNum.textContent=voted+' / '+TOTAL_PARTICIPANTS+'명 ('+pct+'%)'; }
+  if(miniFg){ miniFg.style.width=pct+'%'; }
+
+  const resPct=document.getElementById('resRatePct');
+  const resFg=document.getElementById('resRateFg');
+  const resSub=document.getElementById('resRateSub');
+  if(resPct){ resPct.textContent=pct+'%'; }
+  if(resFg){ resFg.style.width=pct+'%'; }
+  if(resSub){ resSub.textContent=voted+' / '+TOTAL_PARTICIPANTS+'명 참여'; }
+}
+
+async function doAuth(){
+  const name=document.getElementById('authName').value;
+  const pw=document.getElementById('authPw').value.trim();
+  const errEl=document.getElementById('authErr');
+  errEl.style.display='none';
+
+  if(!name){ errEl.textContent='성함을 선택해주세요.'; errEl.style.display='block'; return; }
+  if(!/^[0-9]{4}$/.test(pw)){ errEl.textContent='비밀번호 4자리를 입력해주세요.'; errEl.style.display='block'; return; }
+  if(ROSTER[name] !== pw){ errEl.textContent='성함 또는 비밀번호가 일치하지 않습니다.'; errEl.style.display='block'; return; }
+
+  const btn=document.getElementById('authBtn');
+  btn.disabled=true; btn.textContent='확인 중...';
+
+  authName=name;
+  authKey=hashKey(name);
+
+  let prevVote=null;
+  try{
+    const r=await window.storage.get('vote:'+authKey, true);
+    if(r&&r.value){ prevVote=JSON.parse(r.value); }
+  }catch(e){}
+
+  selected = new Set(prevVote || []);
+
+  document.getElementById('whoName').textContent=authName;
+  document.getElementById('revoteTag').classList.toggle('hide', !prevVote);
+  document.getElementById('submitBtn').textContent = prevVote ? '투표 수정하기' : '투표 제출하기';
+
+  document.getElementById('authView').classList.add('hide');
+  document.getElementById('voteAreaView').classList.remove('hide');
+  document.getElementById('footbar').classList.remove('hide');
+
+  renderCards();
+  btn.disabled=false; btn.textContent='로그인하고 투표하기';
+}
+
+function resetAuth(){
+  authKey=null; authName=null; selected=new Set();
+  document.getElementById('authName').value='';
+  document.getElementById('authPw').value='';
+  document.getElementById('authView').classList.remove('hide');
+  document.getElementById('voteAreaView').classList.add('hide');
+  document.getElementById('footbar').classList.add('hide');
+}
+
+function renderCards(){
+  const area=document.getElementById('cardArea'); area.innerHTML='';
+  FIELDS.forEach(f=>{
+    let list=CANDS.filter(c=>c.field===f);
+    if(BLOCK_SELF_VOTE && authName){ list=list.filter(c=>c.name!==authName); }
+    if(list.length===0) return;
+
+    const g=document.createElement('div'); g.className='field-group';
+    g.innerHTML='<div class="field-head"><span class="field-dot" style="background:'+FCOLOR[f]+'"></span>'+f+'<span class="field-count">'+list.length+'명</span></div>';
+    list.forEach(c=>{
+      const card=document.createElement('div');
+      card.className='card'+(selected.has(c.id)?' sel':'');
+      card.id='card_'+c.id;
+      card.onclick=()=>toggle(c.id);
+      card.innerHTML='<div class="nm">'+esc(c.name)+'</div><div class="ms">'+esc(c.msg)+'</div><div class="check"></div>';
+      g.appendChild(card);
+    });
+    area.appendChild(g);
+  });
+  updateCounter();
+}
+
+function toggle(id){
+  if(selected.has(id)){ selected.delete(id); }
+  else{
+    if(selected.size>=MAX_VOTES){ toast('최대 '+MAX_VOTES+'명까지 선택할 수 있습니다'); return; }
+    selected.add(id);
+  }
+  document.getElementById('card_'+id).classList.toggle('sel');
+  updateCounter();
+}
+
+function updateCounter(){
+  document.getElementById('selNow').textContent=selected.size;
+  document.getElementById('submitBtn').disabled=(selected.size===0);
+}
+
+async function submitVote(){
+  if(selected.size===0 || !authKey) return;
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='제출 중...';
+  try{
+    await window.storage.set('vote:'+authKey, JSON.stringify([...selected]), true);
+    toast('투표가 완료되었습니다. 감사합니다!');
+    await refreshRateDisplay();
+    setTimeout(()=>{
+      resetAuth();
+      show('vote');
+    }, 1300);
+  }catch(e){
+    toast('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+    btn.disabled=false; btn.textContent='투표 제출하기';
+  }
+}
+
+async function renderResults(){
+  await refreshRateDisplay();
+
+  const tally={}; CANDS.forEach(c=>tally[c.id]=0);
+  let voters=0;
+  try{
+    const r=await window.storage.list('vote:', true);
+    const keys=(r&&r.keys)?r.keys:[];
+    for(const k of keys){
+      try{
+        const v=await window.storage.get(k, true);
+        if(v&&v.value){
+          const arr=JSON.parse(v.value);
+          if(arr.length){ voters++; arr.forEach(id=>{ if(id in tally) tally[id]++; }); }
+        }
+      }catch(e){}
+    }
+  }catch(e){}
+
+  const ranked=CANDS.map(c=>({...c, v:tally[c.id]})).sort((a,b)=>b.v-a.v);
+  const maxV=Math.max(1, ranked[0]?ranked[0].v:0);
+
+  const podium=document.getElementById('podium'); podium.innerHTML='';
+  const rankList=document.getElementById('rankList'); rankList.innerHTML='';
+  const restHead=document.getElementById('restRankHead');
+
+  if(voters===0 || maxV===0){
+    podium.innerHTML='<div class="empty">아직 투표가 없습니다.<br>첫 투표의 주인공이 되어보세요.</div>';
+    restHead.style.display='none';
+    return;
+  }
+
+  const medalLabel=['🥇 1위','🥈 2위','🥉 3위'];
+  [0,1,2].forEach(i=>{
+    const c=ranked[i]; if(!c||c.v===0) return;
+    const d=document.createElement('div'); d.className='pcard p'+(i+1);
+    d.innerHTML='<div class="prank">'+medalLabel[i]+'</div>'+
+      '<div class="pname">'+esc(c.name)+'</div>'+
+      '<div class="pfield">'+esc(c.field)+'</div>'+
+      '<div class="pmsg">'+esc(c.msg)+'</div>'+
+      '<div class="pvote"><div class="n">'+c.v+'</div><div class="l">표</div></div>';
+    podium.appendChild(d);
+  });
+
+  const rest=ranked.slice(3).filter(c=>c.v>0);
+  restHead.style.display = rest.length ? 'block' : 'none';
+  rest.forEach((c,idx)=>{
+    const row=document.createElement('div'); row.className='rrow';
+    const w=Math.round(c.v/maxV*100);
+    row.innerHTML='<div class="rno">'+(idx+4)+'</div>'+
+      '<div class="rmid"><div class="rnm">'+esc(c.name)+'</div><div class="rms">'+esc(c.field)+'</div></div>'+
+      '<div class="rbarwrap"><div class="rbarbg"><div class="rbar" style="width:'+w+'%"></div></div></div>'+
+      '<div class="rvt">'+c.v+'</div>';
+    rankList.appendChild(row);
+  });
+}
+
+function show(which){
+  const vote=which==='vote';
+  document.getElementById('voteView').classList.toggle('hide', !vote);
+  document.getElementById('resView').classList.toggle('hide', vote);
+  document.getElementById('footbar').classList.toggle('hide', !vote || !authKey);
+  document.getElementById('tabVote').classList.toggle('on', vote);
+  document.getElementById('tabRes').classList.toggle('on', !vote);
+  if(!vote){ renderResults(); }
+  else{ refreshRateDisplay(); }
+  window.scrollTo(0,0);
+}
+
+(function init(){
+  populateNameSelect();
+  refreshRateDisplay();
+})();
+</script>
+</body>
+</html>
